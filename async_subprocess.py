@@ -1,6 +1,7 @@
 import asyncio
 from asyncio.subprocess import PIPE
 from time import time
+from typing import Coroutine
 
 
 def timer(function):
@@ -55,3 +56,16 @@ async def async_subprocess(
     except Exception as e:
         print(f"[{description}] ERROR: {e}")
     return await process.wait()
+
+# @timer
+async def gather_limitter(*args: Coroutine, max=5):
+    start = 0
+    while start<len(args):        
+        iterable_range = range(start, start + max) if len(args) >= start+max else range(start, len(args))
+        tasks = [args[i] for i in iterable_range]
+        await asyncio.gather(*tasks, return_exceptions=True)
+        print(f'Completed {len(tasks) + start} of {len(args)} tasks \n')
+        start += max
+
+if __name__=='__main__':
+    asyncio.run(gather_limitter(*[asyncio.sleep(2) for _ in range(9)], max=2))

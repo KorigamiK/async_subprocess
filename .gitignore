@@ -2,3 +2,4 @@
 /reference.py
 /wget-log
 *.pyc
+sample-curl-downloader.py

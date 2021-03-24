@@ -13,6 +13,9 @@ async def main():
         ("bash", "-c", "sleep 2 && asdfa", "hello"),
         ("bash", "-c", "echo hehe && sleep 3", "bye"),
         ("bash", "-c", "python3 teset.py", "input", ["hi"]),
+        ("bash", "-c", "curl -o file1.mp4 https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_640_3MG.mp4", "v1"),
+        ("bash", "-c", "curl -o file2.mp4 https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4 2>&1", "v2"),
+        ("bash", "-c", "wget https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1280_10MG.mp4 2>&1", "v3"),
     ]
     tasks = []
     for i in cmds:
